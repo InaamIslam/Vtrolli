@@ -1,0 +1,32 @@
+<html>
+<body style="background-color:	#CCE5FF"></body>
+	
+    <h1 style="
+text-transform: capitalize;
+margin-left: 20px;
+margin-right: 0px;
+margin-top: 0px;
+margin-bottom: 0px;
+position: relative;
+font-size: xxx-large;">Welcome to Vtrolli</h1>
+
+<h1 style="
+margin-left: 30px;
+margin-right: 0px;
+margin-top: 30px;
+margin-bottom: 0px;
+position: relative;
+font-size: x-large;">Your click and collect virtual butchers store</h1>
+
+
+<h2 style="
+margin-left: 30px;
+margin-right: 0px;
+margin-top: 30px;
+margin-bottom: 0px;
+position: relative;"> <a href='{{url_for('home')}}'>Home</a>  &nbsp;  <a href='{{url_for('shop')}}'>Shop</a>  &nbsp;  <a href='{{url_for('checkout')}}'>Checkout</a>
+            
+{% block body %}
+{% endblock body %}
+</body>
+</html>

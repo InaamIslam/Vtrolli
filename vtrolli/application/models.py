@@ -1,12 +1,15 @@
 from application import db
 
-class order(db.orders):
-    id = db.Column(db.Integer, primary_key=True) #it will auto-increment
-    full_name = db.Column(db.String(100), nullable=False)
-    address = db.Column(db.String(100), nullable =False, unique=True)
+class orders(db.Model):
+    id = db.Column(db.Integer, primary_key=True) 
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100), nullable =False, unique=True)
+    collection_date_time= db.Column(db.DateTime)
+    products = db.relationship('product', backref='prod') #Wont create a column, this is python being told that there is a relationship between the two models here
 
-class product(db.product):
+class product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item = db.Column(db.String(100), nullable=False)
     cost = db.Column(db.Integer, nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
+    orders_id = db.Column(db.Integer, db.ForeignKey('orders.id'))

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<p>Select your items from the list of products below, then select your preferred collection time</p>
+    <div class= 'form' >
+        <form method='POST' action=''>
+            {{ form.hidden_tag() }}
+                {{ form.first_name.label }} {{ form.first_name }}
+                <br>
+                {{ form.last_name.label }} {{ form.last_name }}
+                <br>
+                {{ form.email.label }} {{ form.email }}
+                <br>
+                {{ form.product.label}} {{ form.product}}
+                <br>
+                {{ form.collection.label }} {{ form.collection }}
+                
+                <br>
+            {{ form.submit }}
+        {{ message }}
+        </form>
+    </div>
+{% endblock body %}
