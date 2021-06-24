@@ -12,20 +12,25 @@ from application.models import orders, product
     
 class order_form(FlaskForm):
 
-    first_name = StringField('First name')
+    first_name = StringField('First name: ')
 
-    last_name = StringField('Last name')
+    last_name = StringField('Last name: ')
 
-    email = StringField('Email name')
+    email = StringField('Email: ')
 
     product = SelectField(
-        choices = [('Chicken, ', 'Lamb', 'Cow', 'Fish', 'Sheep'])
+        choices= ['Chicken','Lamb','Cow','Fish','Sheep'])
+
+    # choices= [(1, 'Chicken') , (2,'Lamb'), (3, 'Cow',) (4,'Fish'), (5, 'Sheep')])
 
     #do the tuple method (chkn, chicken)
 
-    collection = StringField('Chosen Date and time of Colelction')
+    collection_date_time = StringField('Please state your preferred date and tiem for collection: ')
 
-    submit = SubmitField('Place Order')
+    #change this to date and time 
+
+    submit = SubmitField('PLACE ORDER')
+    
 
 
 

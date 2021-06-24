@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
 <p>Your order details are below</p>
+    <div class= 'form' >
+        <form method='POST' action=''>  
+            {{ my_order.data }}
+    <div>
+
 <p>Please confirm and process</p>
 {% endblock body %}
