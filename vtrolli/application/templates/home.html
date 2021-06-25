@@ -2,16 +2,52 @@
 {% block body %}
 <p>We only have a selected list of items in stock so take a look at the options below.</p>
 <p>We only allow for one item to be purcased per order, so choose with care!</p>
-<br>
-Item One: Chicken    Price: £10
-<br>
-Item Two: Cow    Price: £200
-<br>
-Item Three: Sheep    Price: £100
-<br>
-Item Four: Lamb   Price: £100
-<br>
-Item Five: Fish    Price: £20
-<br>
 <p>You can now click the link to 'SHOP' and make a purchase</p>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: 30px;
+  margin-right: 0px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  position: relative;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<h2>Item List</h2>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>Chicken</td>
+    <td>£10</td>
+  </tr>
+  <tr>
+    <td>Cow</td>
+    <td>£200</td>
+  </tr>
+  <tr>
+    <td>Sheep</td>
+    <td>£100</td>
+  </tr>
+  <tr>
+    <td>Lamb</td>
+    <td>£200</td>
+  </tr>
+  <tr>
+    <td>Fish</td>
+    <td>£20</td>
+  </tr>
+  </table>
 {% endblock body %}

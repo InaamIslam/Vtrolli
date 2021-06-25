@@ -1,29 +1,8 @@
-# from flask import Flask, render_template
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# @app.route('/home')
-# def home():
-#     return 'WELCOME TO VTROLLI'
-
-# @app.route('/shop')
-# def shop():
-#     return 'Select your items from the list of products below, then select your preferred collection time.'
-
-# @app.route('/checkout')
-# def checkout():
-#     return 'Your order details are below. Please confirm and process.'
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-###Adding the routes with HTML files
-
 from flask import Flask, render_template, request
 from application import app
 from application.forms import order_form
-import datetime 
+from application.models import orders, products
+# import datetime #no longer in use, collection_date_time changed to string
 
 @app.route('/')
 @app.route('/home')
@@ -41,55 +20,68 @@ def shop():
         email = form.email.data
         product = form.product.data
         collection_date_time = form.collection_date_time.data
-
-        # if len(first_name) == 0 or len(last_name) == 0:
-        #     error = 'Please supply both first and last name'
-        # if len(email) == 0:
-        #     error = 'Please insert an email address so that we can update you regard your order'
-        # if len(collection_date_time) == 0: 
-        #     error = 'Please state enter your preffered date and time for collection'
-        # if #no selection for the product 
-
-    
-        def add_order():
-            new_order = order_form(
-                first_name = 'form.first_name.data', last_name = 'form.last_name.data', 
-                email = 'form.email.data',
-                product = 'form.product.data',
-                collection_date_time = 'form.collection_date_time.data')
-            db.session.add(new_order)
-            db.session.commit()
-            return "Added new order to database"
-       
-
-        #add the info to database 
         
+        new_order = orders(
+            first_name = form.first_name.data, last_name = form.last_name.data, 
+            email = form.email.data,
+            product = form.product.data,
+            collection_date_time = form.collection_date_time.data)
+        db.session.add(new_order)
+        db.session.commit()
+        #query for the new order and then pass that thriough to the checkout
+        confirmation_order = orders.query.get(new_order)
+        return redirect(url_for('checkout', confirmation_order = new_order)) #add the info to database 
     return render_template('shop.html', form=form, message=error)
 
-@app.route('/checkout')
+#when have
+    #If validators are correct then send to checkout page with list of items displayed
 
-def read_order():
-     all_orders = order_form.query.all()
-     my_order = ""
-     for order in all_orders:
-         order_string += "<br>"+ order.name
+@app.route('/checkout/<id>', methods=['GET', 'POST'])
+def checkout(id): #     #read the order placed on shop
+    my_order = orders.query.filter_by(id=id).first()
+    
+#     #if customer is happy with order, they confirm, if not can update or delete
+#     #second form for updating here
+#     #two buttons update and delete 
+#     #delete button for delete order
+    return render_template('checkout.html', myorder = my_order, form=form, message=error)
+  
+    
+
+# @app.route('/update/<id>', methods=['GET', 'POST'])  
+# def update_order(id):
+#     all_orders = order_form.query.all()
+#     my_order_update= my_order
+#     db.session.commit()
 
 
+#     #This route allows for a form to be filled in again to change the order
+#     #only the product changes in this case
+   
 
 
+# @app.route('/delete/<id>', methods=['GET', 'POST']) 
+# delete_order(id_num):
+#         all_orders = order_form.query.all()
+#         my_order_delete= all_orders.query.get(id_num)
+#         db.session.delete(my_order_delete)
+#         db.session.commit()
+#  #redirect to shop URL
+#  #doesnt need a render template
+#  #query database and delete object then return to @route shop
 
 
-# def order_checkout():
-#     return print(new_order)
+#     def update(id_num):
+#         all_orders = order_form.query.all()
+#         my_order_update= my_order
+#         db.session.commit()
+#         return my_order_update
 
-# def update_order():
-#     new_order = order.query.first()
-#     first 
-
-# def delete_order():
-
-def checkout():
-    return render_template('checkout.html')
+#     def delete_order(id_num):
+#         all_orders = order_form.query.all()
+#         my_order_delete= all_orders.query.get(id_num)
+#         db.session.delete(my_order_delete)
+#         db.session.commit()
 
 if __name__ == "__main__":
     app.run(debug=True)

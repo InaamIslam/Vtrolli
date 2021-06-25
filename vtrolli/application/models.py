@@ -6,10 +6,12 @@ class orders(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), nullable =False, unique=True)
     collection_date_time= db.Column(db.DateTime)
-    products = db.relationship('product', backref='prod') #Wont create a column, this is python being told that there is a relationship between the two models here
+    products_id = db.Column(db.Integer, db.ForeignKey('products.id'))
+   #Wont create a column, this is python being told that there is a relationship between the two models here
 
-class product(db.Model):
+class products(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item = db.Column(db.String(100), nullable=False)
     cost = db.Column(db.Integer, nullable=False)
-    orders_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+    orders = db.relationship('orders', backref='prod')
+    

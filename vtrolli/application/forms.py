@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, DateTimeField
 from wtforms.validators import InputRequired, ValidationError
 
-from application.models import orders, product 
+from application.models import orders, products
 
 # class order_check: 
 #     def validate_name(form, field):
