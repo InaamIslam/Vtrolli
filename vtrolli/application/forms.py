@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, DateTimeField
+from wtforms import StringField, SubmitField, DateTimeField
 from wtforms.validators import InputRequired, ValidationError
 
 from application.models import orders, products
@@ -18,14 +18,9 @@ class order_form(FlaskForm):
 
     email = StringField('Email: ')
 
-    product = SelectField(
-        choices= ['Chicken','Lamb','Cow','Fish','Sheep'])
+    product = StringField( 'My chosen product is: ')
 
-    # choices= [(1, 'Chicken') , (2,'Lamb'), (3, 'Cow',) (4,'Fish'), (5, 'Sheep')])
-
-    #do the tuple method (chkn, chicken)
-
-    collection_date_time = StringField('Please state your preferred date and tiem for collection: ')
+    collection_date_time = StringField('Please state your preferred date and time for collection: ')
 
     submit = SubmitField('PLACE ORDER')
     
