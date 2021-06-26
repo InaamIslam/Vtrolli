@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-<p>Your order details are below</p>
+<p>Your order was confirmed.</p>
     <div class= 'my_order'
             {{ my_order.id }}
             <br>
@@ -12,5 +12,7 @@
             <br>
             {{ my_order.product }}
     <div>
-<p>Please confirm and process</p>
+<p>If you would like to update your order please click: <a href='{{url_for('update')}}'>Update</a> </p>
+<p>If you would like to delete your order please click: <a href='{{url_for('delete')}}'>delete</a> </p>
+
 {% endblock body %}
