@@ -1,8 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <p>Your order details are below</p>
-    <div class= 'form' >
-        <form method='POST' action=''>  
+    <div class= 'my_order'
             {{ my_order.id }}
             <br>
             {{ my_order.first_name }}
@@ -12,6 +11,7 @@
             {{ my_order.email }}
             <br>
             {{ my_order.product }}
+            
     <div>
 
 <p>Please confirm and process</p>

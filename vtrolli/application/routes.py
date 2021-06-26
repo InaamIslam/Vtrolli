@@ -13,14 +13,14 @@ def home():
 def shop():
     error = ""
     form = order_form()
-
     if request.method == 'POST':
         first_name = form.first_name.data
         last_name = form.last_name.data
         email = form.email.data
         product = form.product.data
         collection_date_time = form.collection_date_time.data
-        
+        # new_order = orders(first_name, last_name, email, product, collection_date_time)
+        # ^why does this not work? 
         new_order = orders(
             first_name = form.first_name.data, last_name = form.last_name.data, 
             email = form.email.data,
@@ -28,6 +28,7 @@ def shop():
             collection_date_time = form.collection_date_time.data)
         db.session.add(new_order)
         db.session.commit()
+
         #query for the new order and then pass that thriough to the checkout
         confirmation_order = orders.query.get(new_order)
         return redirect(url_for('checkout', confirmation_order = new_order)) #add the info to database 

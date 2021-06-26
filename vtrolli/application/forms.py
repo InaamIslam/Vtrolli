@@ -27,8 +27,6 @@ class order_form(FlaskForm):
 
     collection_date_time = StringField('Please state your preferred date and tiem for collection: ')
 
-    #change this to date and time 
-
     submit = SubmitField('PLACE ORDER')
     
 
