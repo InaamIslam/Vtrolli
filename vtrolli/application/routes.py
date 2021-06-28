@@ -41,6 +41,7 @@ def update(id):
     order_update = order_form.query.get(id)
     if form.validate_on_submit():
         order_update.product = form.product.data
+        collection_update.collection_date_time = form.collection_date_time.data
         db.session.commit()
         return redirect(url_for('checkout'))
     return render_template('update.html', title = 'Order updated', form=form)

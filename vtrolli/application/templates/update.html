@@ -1,4 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
-<p>Please submit the new product that you would like to order: </p>
+<p>Please submit the new product that you would like to order or the new collection_date_time </p>
+<div class= 'form' >
+    <form method='POST' action=''>
+        {{ form.hidden_tag() }}
+            <br>
+            {{ form.product.label}} {{ form.product}}
+            <br>
+            {{ form.collection_date_time.label }} {{ form.collection_date_time }}
+            <br>
+            <br>
+        {{ form.submit }}
+    {{ message }}
+    </form>
+</div>
+
 {% endblock body %}
