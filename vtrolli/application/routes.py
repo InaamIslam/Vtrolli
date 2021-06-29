@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from application import app, db
 from application.forms import order_form
 from application.models import orders
@@ -26,24 +26,22 @@ def shop():
             collection_date_time = form.collection_date_time.data)
         db.session.add(add_order)
         db.session.commit()
-        return redirect(url_for('checkout')) 
     return render_template('shop.html', form=form)
 
 @app.route('/checkout/<id>')
-def confirm(id):   
+def checkout(id):   
     add_order = orders.query.filter_by(id=id).first()
     return render_template('checkout.html', add_order = add_order)
         
 
 @app.route('/update/<id>', methods=['GET', 'POST'])  
 def update(id):
-    form = order_form
-    order_update = order_form.query.get(id)
+    form = order_form()
+    order_update = orders.query.get(id)
     if form.validate_on_submit():
         order_update.product = form.product.data
         collection_update.collection_date_time = form.collection_date_time.data
         db.session.commit()
-        return redirect(url_for('checkout'))
     return render_template('update.html', title = 'Order updated', form=form)
 
 @app.route('/delete/<id>')
