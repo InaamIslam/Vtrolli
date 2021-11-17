@@ -96,5 +96,4 @@ Below is shown ERD table for the project. My project will be connected to a GCP 
 This will allow anyone to Create, Read, Update and Delete from the database.
  
 
-git config --global  user.email "Inaam.islaam@gmail.com"
-git config --global user.name "Inaam Islam"
+
